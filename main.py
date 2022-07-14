@@ -5,13 +5,6 @@ import numpy as np
 from flightObjectGrapher import flightObjectGrapher
 import time
 
-# Load constants
-g = 9.81 # [m/s**2]
-# Inertia Tensor Matrix for Ionocraft
-g = 9.8      # [m/s**2], acceleration of gravity
-m = 60e-6      # [kg], body mass  Changed from 10e-6 9/5/2017    5-e-6 is with IMU + flexboard
-angularVelocity = np.transpose([0, 0, 0])
-
 t_duration = 15;
 orientationMode = 'euler'
 if __name__ == '__main__':

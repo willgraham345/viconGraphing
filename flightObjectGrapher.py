@@ -6,6 +6,38 @@ IMPROVEMENT IDEAS
 We could try and make the x, y, z translation start at 0 and be relative to its initial position. That wouldn't be too much work and may be helpful later.
 """
 class flightObjectGrapher:
+    def __init__(self):
+        self.fig, ((self.ax1, self.ax2, self.ax3), (self.ax4, self.ax5, self.ax6)) = plt.subplots(2,3, sharex='all', animated='True')
+
+
+
+    def init_fig(fig, ax, artists):
+        """Initialize the figure, used to draw the first
+        frame for the animation.
+        """
+        # Set the axis and plot titles
+        # ax1.set_xlabel('itx')
+        # ax1.set_ylabel("X Vals")
+        # ax2.set_ylabel('Y Vals')
+        # ax3.set_ylabel('Z Vals')
+        # ax4.set_ylabel('Roll Vals')
+        # ax5.set_ylabel('Pitch Vals')
+        # ax6.set_ylabel('Yaw Vals')
+        # return artist
+
+    def frame_iter(from_day, until_day):
+        """Iterate through the days of the spectra and return
+        flux and day number.
+        """
+        return # (x, y data for each thing here)
+
+    def update_artists(frames, artists, lambdas):
+        """Update artists with data from each frame."""
+        flux, day = frames
+
+        artists.flux_line.set_data(lambdas, flux)
+        artists.day.set_text(day)
+
     def __init__(self, orientationMode):
         self.x = []
         self.y = []
@@ -22,11 +54,11 @@ class flightObjectGrapher:
         self.qw = []
         self.frame = []
         self.t = []
-        self.M1 = 0.0
-        self.M2 = 0.0
-        self.M3 = 0.0
-        self.M4 = 0.0
-        self.desOrientation = []
+        self.M1 = []
+        self.M2 = []
+        self.M3 = []
+        self.M4 = []
+        self.desOrientation = np.zeros(10)
         if (type(orientationMode) != str):
             raise('orientationMode must be a string (either quaternion or euler)')
         self.orientationMode = orientationMode
@@ -67,7 +99,6 @@ class flightObjectGrapher:
         self.t.append(timeStep)
         # self.omega_pitch.append((self.pitch[-1] - self.pitch[-2]) / timeStep)
         # print('pitch Velocity', ((self.pitch[-1] - self.pitch[-2]) / timeStep) )
-
 
     def graphPoseVals(self):
         fig, axs = plt.subplots(2,3)
